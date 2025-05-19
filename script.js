@@ -37,7 +37,8 @@ const arrayVerbos = [
   ["Laugh", "Laughed", "Laughed"],
   ["Like", "Liked", "Liked"],
   ["Listen", "Listened", "Listened"],
-  ["Look", "Looked", "Looked"]
+  ["Look", "Looked", "Looked"],
+  ["sleep", "slept", "slept"]
 ];
 
 arrayVerbos.sort(function (a, b){
