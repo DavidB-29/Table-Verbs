@@ -38,7 +38,7 @@ const arrayVerbos = [
   ["Like", "Liked", "Liked"],
   ["Listen", "Listened", "Listened"],
   ["Look", "Looked", "Looked"],
-  ["sleep", "slept", "slept"],
+  ["Sleep", "Slept", "Slept"],
   ["eat", "ate", "eaten"]
 ];
 
