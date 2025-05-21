@@ -1,5 +1,5 @@
 const searcher = document.getElementById("buscarverbo");
-const tablee = document.getElementById("table");
+const tablee = document.getElementById("tablee");
 
 searcher.addEventListener("input", filtrartabla);
 
@@ -7,11 +7,11 @@ function filtrartabla(){
     const lupa = searcher.value.toLowerCase();
     const filas = tablee.getElementsByTagName("tr");
     for(let fila of filas){
-        const celds = fila.getElementsByTagName("td");
+        const celds = fila.getElementsByTagName("tr");
         if(celds.length > 0){
-            const verb = celds[0].innerText.toLowerCase();
-            if(verb.includes(lupa)){
-                fila.style.display = ""
+            const verbo = celds[0].innerText.toLowerCase();
+            if(verbo.includes(lupa)){
+                fila.style.display = "";
             }else{
                 fila.style.display = "none"
             }
@@ -43,20 +43,18 @@ const arrayVerbos = [
   ["Leave", "Left", "Left"]
 ];
 
-arrayVerbos.sort(function (a, b){
-    return a[0].localeCompare(b[0]);
-})
+arrayVerbos.sort (function(a, b){
+return a[0].localcompare(b[0]);
+ })
 
-const bodyTable = document.getElementsByTagName("tbody")[0];
-for(let valueFile of arrayVerbos){
-    const newFile = document.createElement("tr");
-    for(let valueCelda of valueFile){
-        const newcelda = document.createElement("td");
-        newcelda.innerText = valueCelda;
-        (newFile).appendChild(newcelda);
+ const bodytable = document.getElementsByTagName("tbody")[0];
+
+ for(let valorFila of arrayVerbos){
+    const newfila = document.createElement("tr");
+    for(let valorCelda of valorFila){
+        const newcelds = document.createElement("td");
+        newcelds.innerText = valorCelda;
+        (newfila).appendChild(newcelds)
     }
-    (bodyTable).appendChild(newFile);
-}
-
-
-
+    (bodytable).appendChild(newfila);
+ }
