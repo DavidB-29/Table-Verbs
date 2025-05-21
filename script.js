@@ -43,8 +43,8 @@ const arrayVerbos = [
   ["Leave", "Left", "Left"]
 ];
 
-arrayVerbos.sort (function(a, b){
-return a[0].localcompare(b[0]);
+arrayVerbos.sort(function(a, b){
+return a[0].localeCompare(b[0]);
  })
 
  const bodytable = document.getElementsByTagName("tbody")[0];
