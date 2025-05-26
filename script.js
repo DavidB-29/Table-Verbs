@@ -1,26 +1,13 @@
+    /*CONSTANTES GLOBALES*/
+
 const searcher = document.getElementById("buscarverbo");
-const tablee = document.getElementById("tablee");
+const tablee = document.getElementById("table");
+const bodytable = document.getElementsByTagName("tbody")[0];
 
-searcher.addEventListener("input", filtrartabla);
+    /*ARRAYS GLOBALES*/
 
-function filtrartabla(){
-    const lupa = searcher.value.toLowerCase();
-    const filas = tablee.getElementsByTagName("tr");
-    for(let fila of filas){
-        const celds = fila.getElementsByTagName("tr");
-        if(celds.length > 0){
-            const verbo = celds[0].innerText.toLowerCase();
-            if(verbo.includes(lupa)){
-                fila.style.display = "";
-            }else{
-                fila.style.display = "none"
-            }
-        }
-    }
-}
-
-const arrayVerbos = [
-    ["Run", "Ran", "Run"],
+const arrayVerbosRegular = [
+  
       ["Accept", "Accepted", "Accepted"],
   ["Arrive", "Arrived", "Arrived"],
   ["Bake", "Baked", "Baked"],
@@ -39,22 +26,75 @@ const arrayVerbos = [
   ["Listen", "Listened", "Listened"],
   ["Look", "Looked", "Looked"],
   ["Sleep", "Slept", "Slept"],
-  ["Eat", "Ate", "Eaten"],
-  ["Leave", "Left", "Left"]
 ];
 
-arrayVerbos.sort(function(a, b){
-return a[0].localeCompare(b[0]);
- })
+const arrayVerbosIrregular = [
+    ["Run", "Ran", "Run"],
+    ["Leave", "Left", "Left"],
+    ["Eat", "Ate", "Eaten"]
+    ]
 
- const bodytable = document.getElementsByTagName("tbody")[0];
+const todosLosVerbos = arrayVerbosRegular.concat(arrayVerbosIrregular);
 
- for(let valorFila of arrayVerbos){
+todosLosVerbos.sort(function(a, b){
+    return a[0].localeCompare(b[0])
+});
+for(let filaValue of todosLosVerbos){
     const newfila = document.createElement("tr");
-    for(let valorCelda of valorFila){
-        const newcelds = document.createElement("td");
-        newcelds.innerText = valorCelda;
-        (newfila).appendChild(newcelds)
+    for(let valorCelda of filaValue){
+        const newceld = document.createElement("td");
+        newceld.innerText = valorCelda;
+        newfila.appendChild(newceld);
+    };
+   bodytable.appendChild(newfila);
+}
+
+function pintartabla(){
+bodytable.innerHTML = "";
+for(let filaValue of todosLosVerbos){
+    const newfila = document.createElement("tr");
+    for(let valorCelda of filaValue){
+        const newceld = document.createElement("td");
+        newceld.innerText = valorCelda;
+        newfila.appendChild(newceld);
+    };
+   bodytable.appendChild(newfila);
+}}
+
+const filterAZ = document.getElementById("filtrarAZ");
+
+filterAZ.addEventListener("click", filtrartablaAZ);
+
+function filtrartablaAZ(){
+   todosLosVerbos.sort((a, b) => a[0].localeCompare(b[0]));
+   pintartabla();
+}
+
+
+const filterZA = document.getElementById("filtrarZA");
+
+filterZA.addEventListener("click", filtrartablaZA);
+
+function filtrartablaZA(){
+   todosLosVerbos.sort((a, b) => b[0].localeCompare(a[0]));
+   pintartabla();
+}
+    /*BUSCADOR DE VERBOS ESPECIFICOS*/
+
+searcher.addEventListener("input", filtrartabla);
+
+function filtrartabla(){
+    const lupa = searcher.value.toLowerCase();
+    const filas = tablee.getElementsByTagName("tr");
+    for(let fila of filas){
+        const celds = fila.getElementsByTagName("td");
+        if(celds.length > 0){
+            const verbo = celds[0].innerText.toLowerCase();
+            if(verbo.includes(lupa)){
+                fila.style.display = "";
+            }else{
+                fila.style.display = "none";
+            }
+            }
+        }
     }
-    (bodytable).appendChild(newfila);
- }
