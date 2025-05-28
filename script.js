@@ -40,9 +40,7 @@ const todosLosVerbos = arrayVerbosRegular.concat(arrayVerbosIrregular);
 
     /*ORDENA LOS VERBOS EN LA TABLA DE FORMA AUTOMATICA DE LA A-Z*/
 
-todosLosVerbos.sort(function(a, b){
-    return a[0].localeCompare(b[0])
-});
+todosLosVerbos.sort((a, b) => a[0].localeCompare(b[0]));
 for(let filaValue of todosLosVerbos){
     const newfila = document.createElement("tr");
     for(let valorCelda of filaValue){
